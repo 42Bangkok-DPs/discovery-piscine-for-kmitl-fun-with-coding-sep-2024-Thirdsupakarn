@@ -1,0 +1,85 @@
+<html>
+    <head>
+        <title>Document</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            body {
+                text-align: center;
+                margin-top: 20%;
+            }
+            select {
+                width: 60px; 
+                font-size: 30px; 
+            }
+            input{
+                width: 150px; 
+                height: 30px; 
+                font-size: 15px; 
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" id="num1" placeholder="Number 1">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" id="num2" placeholder="Number 2">
+        <button id="submit"> Try me! </button>
+
+        <script>
+            let alarm
+            function clicked(){
+                let num1 = Number($('#num1').val());
+                let num2 = Number($('#num2').val());
+                let operator = $('#operator').val();
+
+        
+                if (num1 < 0 || num2 < 0 || !Number.isInteger(num1) || !Number.isInteger(num2)){
+                    console.log("Error :(")
+                    alert('Error :(')
+                    return;
+                }
+                if ((operator == '/' || operator == '%') && num2 == 0){
+                    console.log('Its over 9000!')
+                    alert('Its over 9000!')
+                    return;
+                }
+                ans = 0
+                switch (operator){
+                    case '+':
+                        ans = num1+num2;
+                        break;
+                    case '-':
+                        ans = num1-num2;
+                        break;
+                    case '*':
+                        ans = num1*num2;
+                        break;
+                    case '/':
+                        ans = num1/num2;
+                        break;
+                    case '%':
+                        ans = num1%num2;
+                        break;
+                }
+                alert(ans);
+                console.log(ans)
+            }
+            
+            function reminder(){
+                clearInterval(alarm);
+                alert("Please, use me...");
+                alarm = setInterval(reminder, 30000);
+            }
+
+            $(document).ready(function() {
+                $('#submit').click(clicked);
+                alarm = setInterval(reminder, 30000);
+            });
+        </script>
+    </body>
+</html>

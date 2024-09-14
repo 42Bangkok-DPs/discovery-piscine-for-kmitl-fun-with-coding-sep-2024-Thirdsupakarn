@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>balloon</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f5;
+            }
+            #balloon {
+                width: 200px;
+                height: 200px;
+                background-color: red;
+                border-radius: 50%;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+            </style>
+    </head>
+    <body>
+        <div id="balloon"></div>
+        <script>
+            let $ball = $("#balloon");
+            let size = 200;
+            let colors = ['red', 'green', 'blue'];
+            let colorIndex = 0;
+
+            function updateBalloon() {
+                if (size > 420 || size < 200){
+                    size = 200;
+                }
+                if (colorIndex > 2){
+                    colorIndex = 0
+                }
+                if (colorIndex < 0){
+                    colorIndex = 2
+                }
+                $ball.css({
+                    "width": width = size + 'px',
+                    "height": height = size + 'px',
+                    "background-color": colors[colorIndex]
+                });
+            }
+
+            function clicked() {
+                size += 10;
+                colorIndex +=1
+                updateBalloon();
+            }
+            function left(){
+                size -= 5;
+                colorIndex -= 1;
+                updateBalloon();
+            }
+            $ball.click(clicked);
+            $ball.mouseleave(leave);
+        </script>
+    </body>
+</html>
